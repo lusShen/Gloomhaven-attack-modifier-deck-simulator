@@ -1,65 +1,84 @@
 import random
 import sys
+
+from itertools import chain
+
+
 orig_stdout = sys.stdout
 test_number = 1000000
 attack_per_turn = 1
-base = 1
+base_damage = 1
 
-class attack_modifier_card:
-	def __init__(self, name='' ,modifier = 0 , pierce = 0 , push = 0 , pull = 0, condition = '' , roll = False):
+class Ability(dict):
+	def __missing__(self, key):
+		return 0
+
+
+class Attack_modifier_card:
+	def __init__(self, name='' ,modifier = 0 , condition = set(), ability = Ability() , roll = False, shuffle_marker = False, loss = False):
 		self.name = name
-		self.modifier = modifier
-		self.pierce = pierce
-		self.push = push
-		self.pull = pull
-		self.condition = condition
-		self.roll = roll
+		self.modifier = modifier 
+		self.condition = condition #include wound, poison ... etc
+		self.ability = ability #include bless x, curse x, pierce x, push x ...etc, any ability with a number
+		self.roll = roll 
+		self.shuffle_marker = shuffle_marker #a card with shuffle_marker cause the shuffle
+		self.loss = loss #a card with loss won't back to the deck once it's drawn
 		
 	def __gt__(self, that):
-		if (self.condition != that.condition and self.condition != '' and that.condition != ''):
-			return None
-		if (self.condition != ''):
-			return True if (self.modifier >= that.modifier) else None
-		if (that.condition != ''):
-			return False if (that.modifier >= self.modifier) else None
-		return (self.modifier > that.modifier)
-
-	def __add__(self, other):#2 card will treat as 1 non-roll card
-		temp = attack_modifier_card()
-		temp.modifier = self.modifier + other.modifier
-		temp.pierce = self.pierce + other.pierce
-		temp.push = self.push + other.push
-		temp.pull = self.pull + other.pull
+	
+		#same condition & same otherAbility, then compare modifier
+		if (self.condition == that.condition and self.ability == that.ability ):
+			return (self.modifier > that.modifier)
 		
-		if len(self.condition) != 0:
-			if len(other.condition) != 0:
-				temp.condition = ",".join((self.condition , other.condition))
+		
+		if (len(self.condition) + len(self.ability) ==0):
+			if (self.modifier > that.modifier):
+				return None
 			else:
-				temp.condition = self.condition
-		else:
-			temp.condition = other.condition
+				return False
+				
+		if (len(that.condition) + len(that.ability) ==0):
+			if (self.modifier > that.modifier):
+				return True
+			else:
+				return None
+
+		return None
+
+
+	def __add__(self, other):#add 2 card = the result of the rolling stack, treat as a card
+		temp = Attack_modifier_card(
+			modifier = self.modifier + other.modifier,
+			condition = self.condition.union(other.condition),
+			)
+
+		temp.ability = Ability(dict())
+		for k,v in chain(self.ability.items(), other.ability.items()):
+			temp.ability[k] += v
 		
 		if (self.roll and other.roll):
 			temp.roll = True
 		else:
 			temp.roll = False
+		
+		#the main reason I name the result "card" knowing there is 2x/null in this rolling stack
 		temp.name = self.name
 		if (other.name is '2x' or other.name is 'null'):
 			temp.name = other.name
 		
 		return temp
-		
-		
-class AMC_deck:
-	shuffle_marker = False
-	discard = []
 
-	
+
+class AMC_deck:
 	def __init__(self, cards = [] ):
 		self.deck = cards
+		self.shuffle_marker = False
+		self.discard = []
 		
 	def add_card(self, card):
+		#add a card and shuffle
 		self.deck.append(card)
+		random.shuffle(self.deck)
 		
 	def shuffle_deck(self):
 		self.deck.extend(self.discard)
@@ -68,7 +87,7 @@ class AMC_deck:
 		
 	
 	def turn_end(self):
-		if (self.shuffle_marker == True):
+		if (self.shuffle_marker):
 			self.shuffle_deck()
 			self.shuffle_marker = False
 	
@@ -80,54 +99,57 @@ class AMC_deck:
 	def draw(self):
 		self.__check_deck()
 		card = self.deck.pop()
-		temp = []
-		if (card.name != 'bless' or card.name != 'curse'):
-			temp.append(card)
-		if (card.name is '2x' or card.name is 'null'):
+		cardInPlay = []
+		
+		if (card.loss == False):
+			cardInPlay.append(card)
+			
+		if (card.shuffle_marker):
 			self.shuffle_marker = True
+
 		while (card.roll):
 			self.__check_deck()
 			new_card = self.deck.pop()
 			card = card + new_card
-			if (card.name != 'bless' or card.name != 'curse'):
-				temp.append(new_card)
+			if (new_card.loss == False):
+				cardInPlay.append(new_card)
 		
-		self.discard.extend(temp)
+		self.discard.extend(cardInPlay)
+		
 		return card
 		
-	def draw2(self, adv = True, base = 2):
+	def draw2(self, adv = True, base_damage = 2):
 		self.__check_deck()
 		card1 = self.deck.pop()
 		self.__check_deck()
 		card2 = self.deck.pop()
-		c = []
+		cardInPlay = []
 		result = card1
 		
 		
 		if (card1.roll):
-			#if (adv == False):
-			result = card2
+			result = card2 #default result of disadvantage
 			
 			temp = card1 + card2
-			while(temp.roll):
+			while(temp.roll):# both cards are roll
 				self.__check_deck()
 				card = self.deck.pop()
 				if (card.roll == False and adv == False):
 					result = card
 				temp = temp + card
-				if (card.name != 'bless' or card.name != 'curse'):
-					c.append(card)
+				if (card.loss == False):
+					cardInPlay.append(card)
 			if (adv):
 				result =temp
 		
-		if (card1.roll == False):
+		else:  # if (card1.roll == False)
 			if (card2.roll):
 				result = (card1 + card2) if adv else card1
 			else: #in the case both cards not roll
 				if card1.name is '2x':
-					card1.modifier = base 
+					card1.modifier = base_damage 
 				if card2.name is '2x':
-					card2.modifier = base 
+					card2.modifier = base_damage 
 				#change the modifier, help compare these cards
 				if (card1 > card2 == None):
 					result = card1
@@ -141,45 +163,42 @@ class AMC_deck:
 				if card2.name is '2x':
 					card2.modifier = 0
 		
-		if (card1.name is '2x' or card1.name is 'null'):
-			self.shuffle_marker = True
-		if (card2.name is '2x' or card2.name is 'null'):
+		if (card1.shuffle_marker or card2.shuffle_marker):
 			self.shuffle_marker = True
 
-		if (card1.name != 'bless' or card1.name != 'curse'):
+		if (card1.loss == False):
 			self.discard.append(card1)
-		if (card2.name != 'bless' or card2.name != 'curse'):
+		if (card2.loss == False):
 			self.discard.append(card2)
 		
-		self.discard.extend(c)
+		self.discard.extend(cardInPlay)
 		return result
 
+#basic cards
+card_critical = Attack_modifier_card(name = '2x', shuffle_marker = True)
+card_miss = Attack_modifier_card(name = 'null',modifier = -999, shuffle_marker = True)
+card_0 = Attack_modifier_card(name = '0')
+card_p1 = Attack_modifier_card(name = '+1',modifier = 1)
+card_p2 = Attack_modifier_card(name = '+2',modifier = 2)
+card_p4 = Attack_modifier_card(name = '+4',modifier = 4)
+card_n1 = Attack_modifier_card(name = '-1',modifier = -1)
+card_n2 = Attack_modifier_card(name = '-2',modifier = -2)
 
-card_critical = attack_modifier_card(name = '2x')
-card_miss = attack_modifier_card(name = 'null',modifier = -999)
-card_0 = attack_modifier_card(name = '0')
-card_p1 = attack_modifier_card(name = '+1',modifier = 1)
-card_p2 = attack_modifier_card(name = '+2',modifier = 2)
-card_p4 = attack_modifier_card(name = '+4',modifier = 4)
-card_n1 = attack_modifier_card(name = '-1',modifier = -1)
-card_n2 = attack_modifier_card(name = '-2',modifier = -2)
-card_rollp1 = attack_modifier_card(name = 'roll +1',modifier = 1 , roll=True)
 
-card_p1immobilize = attack_modifier_card(name = '+1 immobilize',modifier = 1 , condition = 'immobilize')
-card_p1disarmd = attack_modifier_card(name = '+1 disarmd',modifier = 1 , condition = 'disarmd')
-card_p2wound = attack_modifier_card(name = '+2 wound',modifier = 2 , condition = 'wound')
-card_p2poison = attack_modifier_card(name = '+2 poison',modifier = 2 , condition = 'poison')
-card_p2curse = attack_modifier_card(name = '+2 curse',modifier = 2 , condition = 'curse')
-card_p3muddle = attack_modifier_card(name = '+3 muddle',modifier = 3 , condition = 'muddle')
-card_stun = attack_modifier_card(name = '+0 stun',modifier = 0 , condition = 'stun')
-card_rollpoison  = attack_modifier_card(name = 'roll poison',modifier = 0 , roll=True , condition = 'poison')
-card_rollcurse  = attack_modifier_card(name = 'roll curse',modifier = 0 , roll=True , condition = 'curse')
-card_rollmuddle  = attack_modifier_card(name = 'roll muddle',modifier = 0 , roll=True , condition = 'muddle')
-card_rollpierce3  = attack_modifier_card(name = 'roll muddle',modifier = 0 ,pierce = 3, roll=True )
-card_rollstun  = attack_modifier_card(name = 'roll stun',modifier = 0 , roll=True , condition = 'stun')
-card_rolladdtarger  = attack_modifier_card(name = 'addtarger',modifier = 0 , roll=True , condition = 'add targer')
-card_item = attack_modifier_card(name = '+0 item',modifier = 0 , condition = 'item')
-card_rollinvisible  = attack_modifier_card(name = 'roll invisible',modifier = 0 , roll=True , condition = 'invisible')
+card_rollp1 = Attack_modifier_card(name = 'roll +1',modifier = 1 , roll=True)
+
+
+card_p1immobilize = Attack_modifier_card(name = '+1 immobilize',modifier = 1 , condition = set(['immobilize']))
+card_p1disarmd = Attack_modifier_card(name = '+1 disarmd',modifier = 1 , condition = set(['disarmd']))
+card_p2wound = Attack_modifier_card(name = '+2 wound',modifier = 2 , condition = set(['wound']))
+card_p2poison = Attack_modifier_card(name = '+2 poison',modifier = 2 , condition = set(['poison']))
+card_p2curse = Attack_modifier_card(name = '+2 curse',modifier = 2 , ability = Ability([('curse',1)]))
+card_p3muddle = Attack_modifier_card(name = '+3 muddle',modifier = 3 , condition = set(['muddle']))
+card_stun = Attack_modifier_card(name = '+0 stun',modifier = 0 , condition = set(['stun']))
+
+
+card_rollcurse  = Attack_modifier_card(name = 'roll curse',modifier = 0 , roll=True , ability = Ability([('curse',1)]) )
+
 
 deck = [
 	card_critical,
@@ -257,6 +276,8 @@ deck = [
 	
 	card_rollcurse,
 	card_rollcurse,
+	card_rollcurse,
+	card_rollcurse,
 	
 	card_p4,
 	card_p4,
@@ -265,99 +286,54 @@ deck = [
 	#card_rollp1
 ]
 
-Deck = AMC_deck(cards = deck)
-Deck.shuffle_deck()
-f = open("normal.txt", "w")
-sys.stdout = f
-print ("damage\tcondition\tpierce")
-j=0
-for i in range(test_number):
-	j=j+1
-	card = Deck.draw()
-	#card = Deck.draw2(base = base , adv= False)
-	#card = Deck.draw2(base = base , adv= True)
-	damage = 0
-	if (card.name is '2x'):
-		damage = (base+ card.modifier)* 2
-	elif (card.name is'null'):
+
+def Deck_simulation(deck,filename, base_damage = 2,test_number = 1000000, adv = 0,attack_per_turn = 1):
+	Deck = AMC_deck(cards = deck)
+	Deck.shuffle_deck()
+	f = open(filename, "w")
+	sys.stdout = f
+	print ("damage\tcondition\tability")
+	j=0
+	for i in range(test_number):
+		j=j+1
+		
+		if (adv==0):
+			card = Deck.draw()
+		elif(adv ==-1):
+			card = Deck.draw2(base_damage = base_damage , adv= False)
+		elif(adv ==1):
+			card = Deck.draw2(base_damage = base_damage , adv= True)
+		
 		damage = 0
-	else:
-		damage = base + card.modifier
-	if (damage <0):
-		damage = 0
-	#print (damege ,"\t" ,card.condition)
-	print ("%d\t%s\t%d" % (damage,card.condition,card.pierce))
-	if (j == attack_per_turn):
-		Deck.turn_end()
-		j=0
+		if (card.name is '2x'):
+			damage = (base_damage+ card.modifier)* 2
+		elif (card.name is'null'):
+			damage = 0
+		else:
+			damage = base_damage + card.modifier
+		if (damage <0):
+			damage = 0
+		#print (damege ,"\t" ,card.condition)
+		if (len(card.condition) >0):
+			condition = card.condition
+		else:
+			condition = ""
+		if (len(card.ability) >0):
+			ability = card.ability
+		else:
+			ability = "";
+		print ("%d\t%s\t%s" % (damage,condition,ability))
+		if (j == attack_per_turn):
+			Deck.turn_end()
+			j=0
 
 
-sys.stdout = orig_stdout
-f.close()
+	sys.stdout = orig_stdout
+	f.close()
+
+Deck_simulation(deck,base_damage = base_damage,  test_number = test_number , adv = 0 , attack_per_turn = attack_per_turn , filename = 'normal.txt')
 print ("normal finish!")
-
-
-
-Deck = AMC_deck(cards = deck)
-Deck.shuffle_deck()
-f = open("adv.txt", "w")
-sys.stdout = f
-print ("damage\tcondition\tpierce")
-j=0
-for i in range(test_number):
-	j=j+1
-	#card = Deck.draw()
-	#card = Deck.draw2(base = base , adv= False)
-	card = Deck.draw2(base = base , adv= True)
-	damage = 0
-	if (card.name is '2x'):
-		damage = (base+ card.modifier)* 2
-	elif (card.name is'null'):
-		damage = 0
-	else:
-		damage = base + card.modifier
-	if (damage <0):
-		damage = 0
-	#print (damege ,"\t" ,card.condition)
-	print ("%d\t%s\t%d" % (damage,card.condition,card.pierce))
-	if ( j == attack_per_turn):
-		Deck.turn_end()
-		j=0
-
-
-sys.stdout = orig_stdout
-f.close()
+Deck_simulation(deck,base_damage = base_damage,test_number = test_number , adv = 1 , attack_per_turn = attack_per_turn , filename = 'adv.txt')
 print ("advantage finish!")
-
-
-Deck = AMC_deck(cards = deck)
-Deck.shuffle_deck()
-f = open("disadv.txt", "w")
-sys.stdout = f
-print ("damage\tcondition\tpierce")
-j=0
-for i in range(test_number):
-	j=j+1
-	#card = Deck.draw()
-	card = Deck.draw2(base = base , adv= False)
-	#card = Deck.draw2(base = base , adv= True)
-	damage = 0
-	if (card.name is '2x'):
-		damage = (base+ card.modifier)* 2
-	elif (card.name is'null'):
-		damage = 0
-	else:
-		damage = base + card.modifier
-	if (damage <0):
-		damage = 0
-	#print (damege ,"\t" ,card.condition)
-	print ("%d\t%s\t%d" % (damage,card.condition,card.pierce))
-	if (j == attack_per_turn):
-		Deck.turn_end()
-		j=0
-
-
-sys.stdout = orig_stdout
-f.close()
+Deck_simulation(deck,base_damage = base_damage,test_number = test_number , adv = -1 , attack_per_turn = attack_per_turn , filename = 'disadv.txt')
 print ("disadvantage finish!")
-
