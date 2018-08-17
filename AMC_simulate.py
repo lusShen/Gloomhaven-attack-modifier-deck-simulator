@@ -3,152 +3,71 @@ import sys
 
 
 
-from GH_AMC import Ability, Attack_modifier_card
-from GH_AMC_deck import AMC_deck
 
+
+from object.GH_AMC_class_deck import AMC_class_deck
+from data.deck.basic_deck import Basic_deck
+from data.card.common_card import Basic_card
+
+
+import copy
+import setting
+
+setting.init()
 orig_stdout = sys.stdout
-test_number = 1000000
-attack_per_turn = 1
-base_damage = 1
 
 
-#basic cards
-card_critical = Attack_modifier_card(name = '2x', shuffle_marker = True)
-card_miss = Attack_modifier_card(name = 'null',modifier = -999, shuffle_marker = True)
-card_0 = Attack_modifier_card(name = '0')
-card_p1 = Attack_modifier_card(name = '+1',modifier = 1)
-card_p2 = Attack_modifier_card(name = '+2',modifier = 2)
-card_p4 = Attack_modifier_card(name = '+4',modifier = 4)
-card_n1 = Attack_modifier_card(name = '-1',modifier = -1)
-card_n2 = Attack_modifier_card(name = '-2',modifier = -2)
 
 
-card_rollp1 = Attack_modifier_card(name = 'roll +1',modifier = 1 , roll=True)
-
-
-card_p1immobilize = Attack_modifier_card(name = '+1 immobilize',modifier = 1 , condition = set(['immobilize']))
-card_p1disarmd = Attack_modifier_card(name = '+1 disarmd',modifier = 1 , condition = set(['disarmd']))
-card_p2wound = Attack_modifier_card(name = '+2 wound',modifier = 2 , condition = set(['wound']))
-card_p2poison = Attack_modifier_card(name = '+2 poison',modifier = 2 , condition = set(['poison']))
-card_p2curse = Attack_modifier_card(name = '+2 curse',modifier = 2 , ability = Ability([('curse',1)]))
-card_p3muddle = Attack_modifier_card(name = '+3 muddle',modifier = 3 , condition = set(['muddle']))
-card_stun = Attack_modifier_card(name = '+0 stun',modifier = 0 , condition = set(['stun']))
-
-
-card_rollcurse  = Attack_modifier_card(name = 'roll curse',modifier = 0 , roll=True , ability = Ability([('curse',1)]) )
-
-
-deck = [
-	card_critical,
-	card_miss,
+def add_curse(deck):
 	
-	#card_0,
-	#card_0,
-	#card_0,
-	#card_0,
-	#card_0,
-	#card_0,
-	#card_n2,
-	#card_n1,
-	#card_n1,
-	#card_n1,
-	#card_n1,
-	#card_n1,
+	if (setting.curse_count>0):
+		deck.add_card(Basic_card['curse'])
+		setting.curse_count -= 1
 
-	card_p2,
-	card_p1,
-	#card_p1,
-	#card_p1,
-	#card_p1,
-	#card_p1,
-	
-	
-	#Scoundrel
-	#card_0,
-	#card_p2,
-	#card_p2,
-	#card_p1,
-	#card_rollp1,
-	#card_rollp1,
-	#card_rollp1,
-	#card_rollp1,
-	#card_rollpierce3,
-	#card_rollpierce3,
-	#card_rollpoison,
-	#card_rollpoison,
-	#card_rollpoison,
-	#card_rollpoison,
-	#card_rollmuddle,
-	#card_rollmuddle,
-	#card_rollinvisible
-	
-	
-	#3 arrow
-	#card_rollp1,
-	#card_rollp1,
-	#card_rollp1,
-	#card_rollp1,
-	#card_p2,
-	#card_p2,
-	#card_p1,
-	#card_p1,
-	#card_rollmuddle,
-	#card_rollmuddle,
-	#card_rollmuddle,
-	#card_rollpierce3,
-	#card_rollpierce3,
-	#card_rollstun,
-	#card_rolladdtarger,
-	#card_item,
-	#card_item,
-	#card_item
-
-	#music note
-	card_p1immobilize,
-	card_p1disarmd,
-	card_p2wound,
-	card_p2poison,
-	card_p2curse,
-	card_p3muddle,
-	card_stun,
-	
-	card_rollcurse,
-	card_rollcurse,
-	card_rollcurse,
-	card_rollcurse,
-	
-	card_p4,
-	card_p4,
-	card_rollp1,
-	card_rollp1,
-	card_rollp1
-]
+def add_bless(deck):
+	if (setting.bless_count>0):
+		deck.add_card(Basic_card['bless'])
+		setting.bless_count -= 1
 
 
-def Deck_simulation(deck,filename, base_damage = 2,test_number = 1000000, adv = 0,attack_per_turn = 1):
-	Deck = AMC_deck(cards = deck)
+def Deck_simulation(deck ,filename, adv = 0):
+	Deck = copy.deepcopy(deck)
 	Deck.shuffle_deck()
 	f = open(filename, "w")
 	sys.stdout = f
 	print ("damage\tcondition\tability")
-	j=0
-	for i in range(test_number):
-		j=j+1
+	attack=0
+	
+	Deck.check_perk('remove_two_-1')
+	Deck.check_perk('replace_one_-1_w_one_+1')
+	Deck.check_perk('add_two_+1')
+	Deck.check_perk('add_two_+1')
+	Deck.check_perk('add_one_+3')
+	Deck.check_perk('add_three_r_push1')
+	Deck.check_perk('add_three_r_push1')
+	Deck.check_perk('add_two_r_pierce3')
+	Deck.check_perk('add_one_r_stun')
+	Deck.check_perk('add_one_r_stun')
+	Deck.check_perk('add_one_r_disarm_one_r_muddle')
+	Deck.check_perk('add_one_r_target')
+	Deck.check_perk('add_one_r_target')
+	Deck.check_perk('add_one_+1_shield1')
+	Deck.check_perk('ignore_negative_item_add_one_+1')
+	
+	
+	for i in range(setting.test_number):
+		
+		attack += 1
 		
 		if (adv==0):
 			card = Deck.draw()
 		elif(adv ==-1):
-			card = Deck.draw2(base_damage = base_damage , adv= False)
+			card = Deck.draw2(base_damage = setting.base_damage , adv= False)
 		elif(adv ==1):
-			card = Deck.draw2(base_damage = base_damage , adv= True)
+			card = Deck.draw2(base_damage = setting.base_damage , adv= True)
 		
-		damage = 0
-		if (card.name is '2x'):
-			damage = (base_damage+ card.modifier)* 2
-		elif (card.name is'null'):
-			damage = 0
-		else:
-			damage = base_damage + card.modifier
+		damage = (setting.base_damage + card.modifier) * card.multiplication
 		if (damage <0):
 			damage = 0
 		#print (damege ,"\t" ,card.condition)
@@ -163,17 +82,31 @@ def Deck_simulation(deck,filename, base_damage = 2,test_number = 1000000, adv = 
 #		else:
 #			ability = "";
 		print ("%d\t%s\t%s" % (damage,condition,ability))
-		if (j == attack_per_turn):
+		if (setting.attack_per_turn > 0 and attack % setting.attack_per_turn == 0):
 			Deck.turn_end()
-			j=0
 
+		if (setting.attack_per_curse > 0 and attack % setting.attack_per_curse == 0):
+			add_curse(Deck)
+			
+		if (setting.attack_per_bless > 0 and attack % setting.attack_per_bless == 0):
+			add_bless(Deck)
 
 	sys.stdout = orig_stdout
+	
+	
+	
 	f.close()
 
-Deck_simulation(deck,base_damage = base_damage,  test_number = test_number , adv = 0 , attack_per_turn = attack_per_turn , filename = 'normal.txt')
+	
+Deck_simulation(deck = AMC_class_deck(), adv = 0  , filename = 'normal.txt')
 print ("normal finish!")
-Deck_simulation(deck,base_damage = base_damage,test_number = test_number , adv = 1 , attack_per_turn = attack_per_turn , filename = 'adv.txt')
+
+setting.init()
+
+Deck_simulation(deck = AMC_class_deck(), adv = 1 , filename = 'adv.txt')
 print ("advantage finish!")
-Deck_simulation(deck,base_damage = base_damage,test_number = test_number , adv = -1 , attack_per_turn = attack_per_turn , filename = 'disadv.txt')
+
+setting.init()
+
+Deck_simulation(deck = AMC_class_deck(), adv = -1 , filename = 'disadv.txt')
 print ("disadvantage finish!")
