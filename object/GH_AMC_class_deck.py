@@ -5,14 +5,14 @@ from data.deck.basic_deck import Basic_deck
 import copy
 
 #default perks = Brute_perk
-from data.deck.base_character import Brute_perk
+from data.deck.base_character import basic_class
 
 
 #for specific class, so the deck include the perks
 
 
 class AMC_class_deck(AMC_deck):
-	def __init__(self, perks = Brute_perk,deck = Basic_deck):
+	def __init__(self, perks = basic_class['Brute'],deck = Basic_deck):
 		super(AMC_class_deck,self).__init__(cards = deck.deck)
 		self.perks = copy.deepcopy(perks)
 		
@@ -48,5 +48,10 @@ class AMC_class_deck(AMC_deck):
 			elif (action == 'a'):
 				for _ in range(count):
 					self.remove_card(card)
+					
+	def check_all(self):
+		for k,p in self.perks.items():
+			for i in range(p['available']):
+				self.check_perk(k)
 
 
