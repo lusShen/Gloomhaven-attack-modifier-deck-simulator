@@ -53,10 +53,9 @@ class Attack_modifier_card:
 		else:
 			temp.roll = False
 		
-		#the main reason I name the result "card" knowing there is 2x/null in this rolling stack
-		temp.name = self.name
-		if (other.name is '2x' or other.name is 'null'):
-			temp.name = other.name
+		temp.multiplication = self.multiplication
 		
+		if (other.multiplication != 1):
+			temp.multiplication = other.multiplication
 		return temp
 
