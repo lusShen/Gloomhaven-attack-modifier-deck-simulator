@@ -92,7 +92,20 @@ Saw_AMC={
 
 
 #Triangle
-#the coder haven't unlocked this class
+Triangle_AMC={
+	'+1' : Attack_modifier_card(name = '+1',modifier = 1),
+	'+2' : Attack_modifier_card(name = '+2',modifier = 2),
+	
+	'fire' : Attack_modifier_card(name = '+0 fire',modifier = 0 , condition = set(['fire'])),
+	'ice' : Attack_modifier_card(name = '+0 ice',modifier = 0 , condition = set(['ice'])),
+	'air' : Attack_modifier_card(name = '+0 air',modifier = 0 , condition = set(['air'])),
+	'earth' : Attack_modifier_card(name = '+0 earth',modifier = 0 , condition = set(['earth'])),
+	
+	'+1_push1' : Attack_modifier_card(name = '+1 push_1',modifier = 1, ability = Ability([('push',1)])),
+	'+1_wound' : Attack_modifier_card(name = '+1 wound',modifier = 1 , condition = set(['wound'])),
+	'stun' : Attack_modifier_card(name = '+0 stun',modifier = 0 , condition = set(['stun'])),
+	'target' : Attack_modifier_card(name = '+0 add target',modifier = 0 , condition = set(['add target']))
+}
 
 
 #Two-Minis

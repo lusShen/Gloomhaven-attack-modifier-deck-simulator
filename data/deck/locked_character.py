@@ -2,7 +2,7 @@ from data.card.common_card import Basic_card
 from data.card.locked_character import *
 locked_class={
 	#Sun
-	'Sun':{
+	'Sunkeeper':{
 		'remove_two_-1':{
 			'available' : 2,
 			'modification' : [
@@ -84,7 +84,7 @@ locked_class={
 	},
 
 	#Triple_Arrow 
-	'TripleArrow':{
+	'Quartermaster':{
 		'remove_two_-1':{
 			'available' : 2,
 			'modification' : [
@@ -166,7 +166,7 @@ locked_class={
 
 
 	#Cthulhu
-	'Cthulhu':{
+	'Plagueherald':{
 		'replace_one_-2_w_one_0':{
 			'available' : 1,
 			'modification' : [
@@ -246,7 +246,7 @@ locked_class={
 
 
 	#Music Note
-	'MusicNote':{
+	'Soothsinger':{
 		'remove_two_-1':{
 			'available' : 2,
 			'modification' : [
@@ -346,7 +346,7 @@ locked_class={
 
 
 	#Saw
-	'Saw':{
+	'Sawbones':{
 		'remove_two_-1':{
 			'available' : 2,
 			'modification' : [
@@ -412,9 +412,106 @@ locked_class={
 		}
 	},
 
-
+	
 	#Triangle
-	#the coder haven't unlocked this class
+	'Elmentalist':{
+		'remove_two_-1':{
+			'available' : 2,
+			'modification' : [
+				(Basic_card['-1'],'r',2)
+			]
+		},
+		
+		'replace_one_-1_w_one_+1':{
+			'available' : 1,
+			'modification' : [
+				(Basic_card['-1'],'r',1),
+				(Triangle_AMC['+1'],'a',1)
+			]
+		},
+		
+		'replace_one_0_w_one_+2':{
+			'available' : 2,
+			'modification' : [
+				(Basic_card['0'],'r',1),
+				(Triangle_AMC['+2'],'a',1)
+			]
+		},
+		
+		'add_three_fire':{
+			'available' : 1,
+			'modification' : [
+				(Triangle_AMC['fire'],'a',3)
+			]
+		},
+		
+		'add_three_ice':{
+			'available' : 1,
+			'modification' : [
+				(Triangle_AMC['ice'],'a',3)
+			]
+		},
+		
+		'add_three_air':{
+			'available' : 1,
+			'modification' : [
+				(Triangle_AMC['air'],'a',3)
+			]
+		},
+		
+		'add_three_earth':{
+			'available' : 1,
+			'modification' : [
+				(Triangle_AMC['earth'],'a',3)
+			]
+		},
+		
+		'replace_two_0_w_one_fire_one_earth':{
+			'available' : 1,
+			'modification' : [
+				(Basic_card['0'],'r',2),
+				(Triangle_AMC['fire'],'a',1),
+				(Triangle_AMC['earth'],'a',1)
+			]
+		},
+
+		'replace_two_0_w_one_ice_one_air':{
+			'available' : 1,
+			'modification' : [
+				(Basic_card['0'],'r',2),
+				(Triangle_AMC['ice'],'a',1),
+				(Triangle_AMC['air'],'a',1)
+			]
+		},
+		
+		'add_two_+1_push1':{
+			'available' : 1,
+			'modification' : [
+				(Triangle_AMC['+1_push1'],'a',2)
+			]
+		},
+		
+		'add_one_+1_wound':{
+			'available' : 1,
+			'modification' : [
+				(Triangle_AMC['+1_wound'],'a',1)
+			]
+		},
+		
+		'add_one_stun':{
+			'available' : 1,
+			'modification' : [
+				(Triangle_AMC['stun'],'a',1)
+			]
+		},
+		
+		'add_one_add target':{
+			'available' : 1,
+			'modification' : [
+				(Triangle_AMC['target'],'a',1)
+			]
+		}
+	},
 
 
 	#Two-Minis

@@ -107,7 +107,6 @@ if setting.test_class in basic_class:
 	character = AMC_class_deck(perks = basic_class[setting.test_class])
 elif setting.test_class in locked_class:
 	character = AMC_class_deck(perks = locked_class[setting.test_class])
-
 else:
 	character = Basic_deck
 
