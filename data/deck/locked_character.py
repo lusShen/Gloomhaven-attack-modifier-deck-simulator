@@ -397,7 +397,7 @@ locked_class={
 			]
 		},
 		
-		'add_one_r_stun':{
+		'add_one_r_heal3':{
 			'available' : 2,
 			'modification' : [
 				(Saw_AMC['r_heal3'],'a',1)
