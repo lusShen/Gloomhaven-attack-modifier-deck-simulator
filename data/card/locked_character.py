@@ -33,8 +33,18 @@ TripleArrow_AMC={
 
 
 #Eclipse
-#the coder haven't unlocked this class
-
+Eclipse_AMC={
+	'+1' : Attack_modifier_card(name = '+1',modifier = 1),
+	
+	'-1_dark' : Attack_modifier_card(name = '-1 dark',modifier = -1 , condition = set(['dark'])),
+	'+1_dark' : Attack_modifier_card(name = '+1 dark',modifier = 1 , condition = set(['dark'])),
+	'+1_invisible' : Attack_modifier_card(name = '+1 invisible',modifier = 1 , condition = set(['invisible'])),
+	
+	'r_muddle' : Attack_modifier_card(name = 'roll muddle',modifier = 0 , roll = True , condition = set(['muddle'])),
+	'r_heal1' : Attack_modifier_card(name = 'roll heal_1',modifier = 0 , roll = True, ability = Ability([('heal',1)])),
+	'r_curse' : Attack_modifier_card(name = 'roll curse',modifier = 0 , roll = True, ability = Ability([('curse',1)])),
+	'r_target' : Attack_modifier_card(name = 'roll add target',modifier = 0 , roll = True , condition = set(['add target']))
+}
 
 #Cthulhu
 Cthulhu_AMC={
@@ -51,7 +61,17 @@ Cthulhu_AMC={
 }
 
 #Lightning
-#the coder haven't unlocked this class
+Lightning_AMC={
+	'+1' : Attack_modifier_card(name = '+1',modifier = 1),
+	
+	'+2_fire' : Attack_modifier_card(name = '+2 fire',modifier = 2 , condition = set(['fire'])),
+	
+	'r_+2' : Attack_modifier_card(name = 'roll muddle',modifier = 2 , roll = True ),
+	'r_wound' : Attack_modifier_card(name = 'roll wound',modifier = 0 , roll = True , condition = set(['wound'])),
+	'r_stun' : Attack_modifier_card(name = 'roll stun',modifier = 0 , roll = True , condition = set(['stun'])),	
+	'r_+1_disarm' : Attack_modifier_card(name = 'roll +1 disarm',modifier = 1 , roll = True , condition = set(['disarm'])),
+	'r_heal1' : Attack_modifier_card(name = 'roll heal_1',modifier = 0 , roll = True, ability = Ability([('heal',1)]))
+}
 
 
 #Music Note

@@ -162,7 +162,78 @@ locked_class={
 
 
 	#Eclipse
-	#the coder haven't unlocked this class
+	'Nightshroud':{
+		'remove_two_-1':{
+			'available' : 2,
+			'modification' : [
+				(Basic_card['-1'],'r',2)
+			]
+		},
+		
+		'remove_four_0':{
+			'available' : 1,
+			'modification' : [
+				(Basic_card['0'],'r',4)
+			]
+		},
+		
+		'add_one_-1_dark':{
+			'available' : 2,
+			'modification' : [
+				(Eclipse_AMC['-1_dark'],'a',1)
+			]
+		},
+		
+		'replace_one_-1_dark_w_one_one_+1_dark':{
+			'available' : 2,
+			'modification' : [
+				(Eclipse_AMC['-1_dark'],'r',1),
+				(Eclipse_AMC['+1_dark'],'a',1)
+			]
+		},
+		
+		'add_one_+1_invisible':{
+			'available' : 2,
+			'modification' : [
+				(Eclipse_AMC['+1_dark'],'a',1)
+			]
+		},
+		
+		'add_three_r_muddle':{
+			'available' : 2,
+			'modification' : [
+				(Eclipse_AMC['r_muddle'],'a',3)
+			]
+		},
+		
+		'add_two_r_heal1':{
+			'available' : 1,
+			'modification' : [
+				(Eclipse_AMC['r_heal1'],'a',2)
+			]
+		},
+		
+		'add_two_r_curse':{
+			'available' : 1,
+			'modification' : [
+				(Eclipse_AMC['r_curse'],'a',2)
+			]
+		},
+		
+		'add_one_r_target':{
+			'available' : 1,
+			'modification' : [
+				(Eclipse_AMC['r_target'],'a',1)
+			]
+		},
+
+		'ignore_negative_scenario_add_two_+1':{
+			'available' : 1,
+			'modification' : [
+				(Eclipse_AMC['+1'],'a',2)
+			]
+		}
+	},
 
 
 	#Cthulhu
@@ -242,7 +313,79 @@ locked_class={
 	},
 
 	#Lightning
-	#the coder haven't unlocked this class
+	'Berserker':{
+		'remove_two_-1':{
+			'available' : 1,
+			'modification' : [
+				(Basic_card['-1'],'r',2)
+			]
+		},
+		
+		'remove_four_0':{
+			'available' : 1,
+			'modification' : [
+				(Basic_card['0'],'r',4)
+			]
+		},
+		
+		'replace_one_-1_w_one_+1':{
+			'available' : 2,
+			'modification' : [
+				(Basic_card['-1'],'r',1),
+				(Lightning_AMC['+1'],'a',1)
+			]
+		},
+		
+		'replace_one_0_w_one_r_+2':{
+			'available' : 2,
+			'modification' : [
+				(Basic_card['0'],'r',1),
+				(Lightning_AMC['r_+2'],'a',1)
+			]
+		},
+		
+		'add_two_r_wound':{
+			'available' : 2,
+			'modification' : [
+				(Lightning_AMC['r_wound'],'a',2)
+			]
+		},
+		
+		'add_one_r_stun':{
+			'available' : 2,
+			'modification' : [
+				(Lightning_AMC['r_stun'],'a',1)
+			]
+		},
+		
+		'add_one_r_+1_disarm':{
+			'available' : 2,
+			'modification' : [
+				(Lightning_AMC['r_+1_disarm'],'a',1)
+			]
+		},
+		
+		'add_two_r_heal1':{
+			'available' : 1,
+			'modification' : [
+				(Lightning_AMC['r_heal1'],'a',2)
+			]
+		},
+		
+		'add_one_+2_fire':{
+			'available' : 2,
+			'modification' : [
+				(Lightning_AMC['+2_fire'],'a',1)
+			]
+		},
+		
+		'ignore_negative_item':{
+			'available' : 1,
+			'modification' : [
+			
+			]
+		}
+	},
 
 
 	#Music Note
