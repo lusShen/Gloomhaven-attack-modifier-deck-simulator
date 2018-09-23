@@ -1,5 +1,102 @@
 from data.card.common_card import Basic_card
 from data.card.locked_character import *
+
+#spoiler warning!!
+#the code below include the true name of locked class with their perk
+#the data start after line 100
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 locked_class={
 	#Sun
 	'Sunkeeper':{
@@ -158,8 +255,81 @@ locked_class={
 	},
 
 	#Circles
-	#the coder haven't unlocked this class
-
+	'Summoner':{
+		'remove_two_-1':{
+			'available' : 1,
+			'modification' : [
+				(Basic_card['-1'],'r',2)
+			]
+		},
+		
+		'replace_one_-2_w_one_0':{
+			'available' : 1,
+			'modification' : [
+				(Basic_card['-2'],'r',1),
+				(Circles_AMC['0'],'a',1)
+			]
+		},
+		
+		'replace_one_-1_w_one_+1':{
+			'available' : 3,
+			'modification' : [
+				(Basic_card['-1'],'r',1),
+				(Circles_AMC['+1'],'a',1)
+			]
+		},
+		
+		'add_one_+2':{
+			'available' : 2,
+			'modification' : [
+				(Circles_AMC['+2'],'a',1)
+			]
+		},
+		
+		'add_two_r_wound':{
+			'available' : 1,
+			'modification' : [
+				(Circles_AMC['r_wound'],'a',2)
+			]
+		},
+		
+		'add_two_r_poison':{
+			'available' : 1,
+			'modification' : [
+				(Circles_AMC['r_poison'],'a',2)
+			]
+		},
+		
+		'add_two_r_heal1':{
+			'available' : 3,
+			'modification' : [
+				(Circles_AMC['r_heal1'],'a',2)
+			]
+		},
+		
+		'add_one_r_fire_one_r_air':{
+			'available' : 1,
+			'modification' : [
+				(Circles_AMC['r_fire'],'a',1),
+				(Circles_AMC['r_air'],'a',1)
+			]
+		},
+		
+		'add_one_r_dark_one_r_earth':{
+			'available' : 1,
+			'modification' : [
+				(Circles_AMC['r_earth'],'a',1),
+				(Circles_AMC['r_dark'],'a',1)
+			]
+		},
+		
+		'ignore_negative_scenario_add_two_+1':{
+			'available' : 1,
+			'modification' : [
+				(Circles_AMC['+1'],'a',2)
+			]
+		}
+	},
 
 	#Eclipse
 	'Nightshroud':{
@@ -195,7 +365,7 @@ locked_class={
 		'add_one_+1_invisible':{
 			'available' : 2,
 			'modification' : [
-				(Eclipse_AMC['+1_dark'],'a',1)
+				(Eclipse_AMC['+1_invisible'],'a',1)
 			]
 		},
 		
@@ -484,7 +654,81 @@ locked_class={
 	},
 
 	#Face Mask
-	#the coder haven't unlocked this class
+	'Doomstalker':{
+		'remove_two_-1':{
+			'available' : 2,
+			'modification' : [
+				(Basic_card['-1'],'r',2)
+			]
+		},
+	
+
+		
+		'replace_two_0_w_two_+1':{
+			'available' : 3,
+			'modification' : [
+				(Basic_card['0'],'r',2),
+				(FaceMask_AMC['+1'],'a',2)
+			]
+		},
+		
+		'add_two_r_+1':{
+			'available' : 2,
+			'modification' : [
+				(FaceMask_AMC['r_+1'],'a',2)
+			]
+		},
+		
+		'add_one_+2_muddle':{
+			'available' : 1,
+			'modification' : [
+				(FaceMask_AMC['+2_muddle'],'a',1)
+			]
+		},
+		
+		'add_one_+1_poison':{
+			'available' : 1,
+			'modification' : [
+				(FaceMask_AMC['+1_poison'],'a',1)
+			]
+		},
+		
+		'add_one_+1_wound':{
+			'available' : 1,
+			'modification' : [
+				(FaceMask_AMC['+1_wound'],'a',1)
+			]
+		},
+		
+		'add_one_+1_immobilize':{
+			'available' : 1,
+			'modification' : [
+				(FaceMask_AMC['+1_immobilize'],'a',1)
+			]
+		},
+		
+		'add_one_stun':{
+			'available' : 1,
+			'modification' : [
+				(FaceMask_AMC['stun'],'a',1)
+			]
+		},
+		
+		'add_one_r_target':{
+			'available' : 1,
+			'modification' : [
+				(FaceMask_AMC['r_target'],'a',1)
+			]
+		},
+		
+		'ignore_negative_scenario':{
+			'available' : 1,
+			'modification' : [
+				
+			]
+		}
+	},
+	
 
 
 

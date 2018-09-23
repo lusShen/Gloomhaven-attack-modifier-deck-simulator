@@ -11,11 +11,10 @@ Brute_AMC={
 	'r_stun' : Attack_modifier_card(name = 'roll stun',modifier = 0 , roll = True , condition = set(['stun'])),
 	'r_disarm' : Attack_modifier_card(name = 'roll disarm',modifier = 0 , roll = True , condition = set(['disarm'])),
 	'r_muddle' : Attack_modifier_card(name = 'roll muddle',modifier = 0 , roll = True , condition = set(['muddle'])),
-	'r_target' : Attack_modifier_card(name = 'roll add target',modifier = 0 , roll = True , condition = set(['add target'])),
+	'r_target' : Attack_modifier_card(name = 'roll add target',modifier = 0 , roll = True , ability = Ability([('add target',1)])),
 	
 	'+1_shield1' : Attack_modifier_card(name = '+1 shield_3',modifier = 1 , ability = Ability([('shield',1)]))
 }
-
 
 #Tinkerer
 Tinkerer_AMC={
@@ -29,7 +28,7 @@ Tinkerer_AMC={
 	'+1_wound' : Attack_modifier_card(name = '+1 wound',modifier = 1 , condition = set(['wound'])),
 	'+1_immobilize' : Attack_modifier_card(name = '+1 immobilize',modifier = 1 , condition = set(['immobilize'])),
 	'+1_heal2' : Attack_modifier_card(name = '+1 heal_2',modifier = 1 , ability = Ability([('heal',2)])),
-	'target' : Attack_modifier_card(name = 'add target',modifier = 0 , condition = set(['add target']))
+	'target' : Attack_modifier_card(name = 'add target',modifier = 0 , ability = Ability([('add target',1)]))
 }
 
 #Spellweaver
