@@ -154,4 +154,13 @@ Triangle_AMC={
 
 
 #Two-Minis
-#the coder haven't unlocked this class
+TwoMinis_AMC={
+	'+1' : Attack_modifier_card(name = '+1',modifier = 1),
+	'+2' : Attack_modifier_card(name = '+2',modifier = 2),
+	
+	'+1_wound' : Attack_modifier_card(name = '+1 wound',modifier = 1 , condition = set(['wound'])),
+	'+1_immobilize' : Attack_modifier_card(name = '+1 immobilize',modifier = 1 , condition = set(['immobilize'])),
+	
+	'r_heal1' : Attack_modifier_card(name = 'roll heal_1',modifier = 0 , roll = True, ability = Ability([('heal',1)])),
+	'r_earth' : Attack_modifier_card(name = '+0 earth',modifier = 0 , roll = True , condition = set(['earth']))
+}

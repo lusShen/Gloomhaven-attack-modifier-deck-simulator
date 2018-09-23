@@ -902,5 +902,63 @@ locked_class={
 
 
 	#Two-Minis
-	#the coder haven't unlocked this class
+	'BeastTyrant':{
+		'remove_two_-1':{
+			'available' : 1,
+			'modification' : [
+				(Basic_card['-1'],'r',2)
+			]
+		},
+		
+		'replace_one_-1_w_one_+1':{
+			'available' : 3,
+			'modification' : [
+				(Basic_card['-1'],'r',1),
+				(TwoMinis_AMC['+1'],'a',1)
+			]
+		},
+
+		'replace_one_0_w_one_+2':{
+			'available' : 2,
+			'modification' : [
+				(Basic_card['0'],'r',1),
+				(TwoMinis_AMC['+2'],'a',1)
+			]
+		},
+		
+		'add_one_+1_wound':{
+			'available' : 2,
+			'modification' : [
+				(TwoMinis_AMC['+1_wound'],'a',2)
+			]
+		},
+		
+		'add_one_+1_immobilize':{
+			'available' : 2,
+			'modification' : [
+				(TwoMinis_AMC['+1_immobilize'],'a',2)
+			]
+		},
+		
+		'add_two_r_heal1':{
+			'available' : 3,
+			'modification' : [
+				(TwoMinis_AMC['r_heal1'],'a',2)
+			]
+		},
+		
+		'add_two_r_earth':{
+			'available' : 1,
+			'modification' : [
+				(TwoMinis_AMC['r_earth'],'a',2)
+			]
+		},
+		
+		'ignore_negative_scenario':{
+			'available' : 1,
+			'modification' : [
+				
+			]
+		}
+	}
 }
