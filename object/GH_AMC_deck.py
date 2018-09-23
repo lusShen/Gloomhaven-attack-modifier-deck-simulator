@@ -115,7 +115,12 @@ class AMC_deck:
 				if (card2.multiplication == 2 ):
 					card2.modifier = base_damage 
 				#change the modifier, help compare these cards
-				if (card1 > card2 == None):
+				
+				#debug
+				#print("debug:...%d\t%s\t%s" % (card1.modifier , card1.condition , card1.ability))
+				#print("debug:...%d\t%s\t%s" % (card2.modifier , card2.condition , card2.ability))
+				
+				if ((card1 > card2) == -1):
 					result = card1
 				elif (card1 > card2):
 					result = card1  if adv else card2

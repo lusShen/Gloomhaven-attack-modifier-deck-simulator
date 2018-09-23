@@ -25,7 +25,7 @@ class Attack_modifier_card:
 		
 		if (len(self.condition) + len(self.ability) ==0):
 			if (self.modifier > that.modifier):
-				return None
+				return -1
 			else:
 				return False
 				
@@ -33,9 +33,8 @@ class Attack_modifier_card:
 			if (self.modifier > that.modifier):
 				return True
 			else:
-				return None
-
-		return None
+				return -1
+		return -1
 
 
 	def __add__(self, other):#add 2 card = the result of the rolling stack, treat as a card
