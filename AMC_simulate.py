@@ -11,6 +11,7 @@ from data.deck.basic_deck import Basic_deck
 from data.card.common_card import Basic_card
 from data.deck.base_character import basic_class
 from data.deck.locked_character import locked_class
+from custom.deck import custom_class
 import copy
 import setting
 
@@ -107,6 +108,8 @@ if setting.test_class in basic_class:
 	character = AMC_class_deck(perks = basic_class[setting.test_class])
 elif setting.test_class in locked_class:
 	character = AMC_class_deck(perks = locked_class[setting.test_class])
+elif setting.test_class in custom_class:
+	character = AMC_class_deck(perks = custom_class[setting.test_class])
 else:
 	character = Basic_deck
 
