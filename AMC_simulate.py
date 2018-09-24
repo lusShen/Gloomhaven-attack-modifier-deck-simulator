@@ -15,7 +15,7 @@ from custom.deck import custom_class
 import copy
 import setting
 
-setting.init()
+
 orig_stdout = sys.stdout
 
 
@@ -104,6 +104,8 @@ def Deck_simulation(deck ,filename, adv = 0):
 	
 	f.close()
 
+setting.init()
+
 if setting.test_class in basic_class:
 	character = AMC_class_deck(perks = basic_class[setting.test_class])
 elif setting.test_class in locked_class:
@@ -112,6 +114,8 @@ elif setting.test_class in custom_class:
 	character = AMC_class_deck(perks = custom_class[setting.test_class])
 else:
 	character = Basic_deck
+
+
 
 Deck_simulation(deck = character, adv = 0  , filename = 'normal.txt')
 print ("normal finish!")

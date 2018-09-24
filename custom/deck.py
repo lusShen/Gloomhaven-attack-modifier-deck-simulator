@@ -5,10 +5,10 @@ from custom.card import *
 custom_class={
 	#sample
 	'sample':{
-		'remove_two_-1':{
+		'remove_one_-2':{
 			'available' : 1,
 			'modification' : [
-				(Basic_card['-1'],'r',2)
+				(Basic_card['-2'],'r',1)
 			]
 		},
 		
