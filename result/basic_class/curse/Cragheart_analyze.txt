@@ -1,0 +1,74 @@
+the analyze of result/basic_class/curse/Cragheart.txt
+
+Expected value of damage:	2.870772
+
+10th percentile of damage:	0
+25th percentile of damage:	1
+50th percentile of damage:	4
+75th percentile of damage:	4
+
+Damage 0:	24.765%
+Damage 1:	6.696%
+Damage 2:	6.734%
+Damage 3:	6.688%
+Damage 4:	33.545%
+Damage 5:	16.763%
+Damage 6:	4.809%
+
+air:	11.807%
+earth:	11.822%
+immobilize:	6.720%
+muddle:	6.708%
+push:	6.283%
+
+Expected value of push:	0.130
+
+
+the analyze of result/basic_class/curse/Cragheart_advantage.txt
+
+Expected value of damage:	3.676847
+
+10th percentile of damage:	0
+25th percentile of damage:	3
+50th percentile of damage:	4
+75th percentile of damage:	5
+
+Damage 0:	10.032%
+Damage 1:	5.030%
+Damage 2:	5.633%
+Damage 3:	6.140%
+Damage 4:	40.644%
+Damage 5:	24.734%
+Damage 6:	7.787%
+
+air:	20.708%
+earth:	20.688%
+immobilize:	10.028%
+muddle:	10.489%
+push:	10.779%
+
+Expected value of push:	0.220
+
+
+the analyze of result/basic_class/curse/Cragheart_disadvantage.txt
+
+Expected value of damage:	2.565430
+
+10th percentile of damage:	0
+25th percentile of damage:	0
+50th percentile of damage:	3
+75th percentile of damage:	4
+
+Damage 0:	26.488%
+Damage 1:	9.561%
+Damage 2:	8.950%
+Damage 3:	8.344%
+Damage 4:	32.150%
+Damage 5:	11.594%
+Damage 6:	2.913%
+
+immobilize:	5.684%
+muddle:	4.518%
+
+
+

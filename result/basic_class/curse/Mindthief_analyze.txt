@@ -1,0 +1,84 @@
+the analyze of result/basic_class/curse/Mindthief.txt
+
+Expected value of damage:	3.230734
+
+10th percentile of damage:	0
+25th percentile of damage:	0
+50th percentile of damage:	4
+75th percentile of damage:	5
+
+Damage 0:	27.125%
+Damage 2:	4.444%
+Damage 3:	14.266%
+Damage 4:	16.126%
+Damage 5:	25.310%
+Damage 6:	10.604%
+Damage 7:	0.724%
+Damage 8:	1.203%
+Damage 9:	0.006%
+Damage 10:	0.169%
+Damage 12:	0.021%
+Damage 14:	0.001%
+
+disarm:	5.250%
+ice:	10.950%
+immobilize:	9.931%
+muddle:	18.051%
+pull:	14.197%
+stun:	5.243%
+
+Expected value of pull:	0.157
+
+
+the analyze of result/basic_class/curse/Mindthief_advantage.txt
+
+Expected value of damage:	3.803109
+
+10th percentile of damage:	0
+25th percentile of damage:	3
+50th percentile of damage:	4
+75th percentile of damage:	5
+
+Damage 0:	18.034%
+Damage 2:	3.440%
+Damage 3:	12.766%
+Damage 4:	17.246%
+Damage 5:	30.486%
+Damage 6:	15.125%
+Damage 7:	0.746%
+Damage 8:	1.933%
+Damage 9:	0.004%
+Damage 10:	0.195%
+Damage 12:	0.023%
+Damage 14:	0.001%
+
+disarm:	7.098%
+ice:	14.158%
+immobilize:	13.634%
+muddle:	25.284%
+pull:	19.664%
+stun:	7.103%
+
+Expected value of pull:	0.212
+
+
+the analyze of result/basic_class/curse/Mindthief_disadvantage.txt
+
+Expected value of damage:	2.885766
+
+10th percentile of damage:	0
+25th percentile of damage:	0
+50th percentile of damage:	3
+75th percentile of damage:	5
+
+Damage 0:	28.990%
+Damage 2:	6.476%
+Damage 3:	18.303%
+Damage 4:	16.578%
+Damage 5:	23.517%
+Damage 6:	6.136%
+
+ice:	9.273%
+
+
+

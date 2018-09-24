@@ -1,0 +1,84 @@
+the analyze of result/basic_class/curse/Brute.txt
+
+Expected value of damage:	2.804062
+
+10th percentile of damage:	0
+25th percentile of damage:	1
+50th percentile of damage:	3
+75th percentile of damage:	4
+
+Damage 0:	24.307%
+Damage 1:	3.116%
+Damage 2:	6.197%
+Damage 3:	18.634%
+Damage 4:	37.196%
+Damage 5:	3.091%
+Damage 6:	7.459%
+
+add target:	5.875%
+disarm:	3.017%
+muddle:	3.013%
+pierce:	5.864%
+push:	15.678%
+shield:	3.110%
+stun:	5.841%
+
+Expected value of add target:	0.061
+Expected value of pierce:	0.181
+Expected value of push:	0.181
+Expected value of shield:	0.031
+
+
+the analyze of result/basic_class/curse/Brute_advantage.txt
+
+Expected value of damage:	3.478290
+
+10th percentile of damage:	0
+25th percentile of damage:	3
+50th percentile of damage:	4
+75th percentile of damage:	4
+
+Damage 0:	11.295%
+Damage 1:	2.380%
+Damage 2:	5.038%
+Damage 3:	17.817%
+Damage 4:	47.174%
+Damage 5:	4.553%
+Damage 6:	11.744%
+
+add target:	9.421%
+disarm:	4.818%
+muddle:	4.814%
+pierce:	9.425%
+push:	26.141%
+shield:	4.677%
+stun:	9.387%
+
+Expected value of add target:	0.096
+Expected value of pierce:	0.289
+Expected value of push:	0.289
+Expected value of shield:	0.047
+
+
+the analyze of result/basic_class/curse/Brute_disadvantage.txt
+
+Expected value of damage:	2.577157
+
+10th percentile of damage:	0
+25th percentile of damage:	0
+50th percentile of damage:	3
+75th percentile of damage:	4
+
+Damage 0:	25.573%
+Damage 1:	4.293%
+Damage 2:	8.248%
+Damage 3:	22.185%
+Damage 4:	32.856%
+Damage 5:	2.123%
+Damage 6:	4.722%
+
+shield:	2.552%
+
+Expected value of shield:	0.026
+
+

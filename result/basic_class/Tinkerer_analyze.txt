@@ -1,0 +1,79 @@
+the analyze of result/basic_class/Tinkerer.txt
+
+Expected value of damage:	3.631562
+
+10th percentile of damage:	3
+25th percentile of damage:	3
+50th percentile of damage:	4
+75th percentile of damage:	4
+
+Damage 0:	5.471%
+Damage 2:	3.694%
+Damage 3:	29.678%
+Damage 4:	48.246%
+Damage 5:	3.717%
+Damage 6:	9.194%
+
+add target:	3.701%
+fire:	6.918%
+heal:	7.446%
+immobilize:	7.405%
+muddle:	10.018%
+wound:	7.413%
+
+Expected value of add target:	0.037
+Expected value of heal:	0.149
+
+
+the analyze of result/basic_class/Tinkerer_advantage.txt
+
+Expected value of damage:	4.030445
+
+10th percentile of damage:	3
+25th percentile of damage:	4
+50th percentile of damage:	4
+75th percentile of damage:	4
+
+Damage 0:	1.609%
+Damage 2:	1.419%
+Damage 3:	20.025%
+Damage 4:	58.210%
+Damage 5:	5.132%
+Damage 6:	13.606%
+
+add target:	4.676%
+fire:	12.389%
+heal:	10.711%
+immobilize:	10.765%
+muddle:	18.219%
+wound:	10.745%
+
+Expected value of add target:	0.047
+Expected value of heal:	0.214
+
+
+the analyze of result/basic_class/Tinkerer_disadvantage.txt
+
+Expected value of damage:	3.230209
+
+10th percentile of damage:	2
+25th percentile of damage:	3
+50th percentile of damage:	3
+75th percentile of damage:	4
+
+Damage 0:	9.344%
+Damage 2:	6.018%
+Damage 3:	39.341%
+Damage 4:	38.254%
+Damage 5:	2.313%
+Damage 6:	4.731%
+
+add target:	3.469%
+heal:	5.550%
+immobilize:	5.527%
+wound:	5.489%
+
+Expected value of add target:	0.035
+Expected value of heal:	0.111
+
+

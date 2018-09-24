@@ -1,0 +1,76 @@
+the analyze of result/basic_class/Scoundrel.txt
+
+Expected value of damage:	4.255117
+
+10th percentile of damage:	0
+25th percentile of damage:	4
+50th percentile of damage:	4
+75th percentile of damage:	5
+
+Damage 0:	10.161%
+Damage 3:	6.021%
+Damage 4:	37.682%
+Damage 5:	27.822%
+Damage 6:	14.383%
+Damage 7:	1.260%
+Damage 8:	2.177%
+Damage 9:	0.011%
+Damage 10:	0.416%
+Damage 12:	0.062%
+Damage 14:	0.005%
+
+invisible:	7.465%
+muddle:	13.927%
+pierce:	13.917%
+poison:	24.452%
+
+Expected value of pierce:	0.448
+
+
+the analyze of result/basic_class/Scoundrel_advantage.txt
+
+Expected value of damage:	4.502094
+
+10th percentile of damage:	3
+25th percentile of damage:	4
+50th percentile of damage:	5
+75th percentile of damage:	5
+
+Damage 0:	8.572%
+Damage 3:	3.886%
+Damage 4:	32.088%
+Damage 5:	32.279%
+Damage 6:	18.285%
+Damage 7:	1.164%
+Damage 8:	3.221%
+Damage 9:	0.010%
+Damage 10:	0.427%
+Damage 12:	0.064%
+Damage 14:	0.004%
+
+invisible:	9.214%
+muddle:	17.469%
+pierce:	17.455%
+poison:	31.782%
+
+Expected value of pierce:	0.553
+
+
+the analyze of result/basic_class/Scoundrel_disadvantage.txt
+
+Expected value of damage:	3.733149
+
+10th percentile of damage:	0
+25th percentile of damage:	4
+50th percentile of damage:	4
+75th percentile of damage:	5
+
+Damage 0:	13.678%
+Damage 3:	9.165%
+Damage 4:	48.538%
+Damage 5:	20.044%
+Damage 6:	8.574%
+
+
+
+

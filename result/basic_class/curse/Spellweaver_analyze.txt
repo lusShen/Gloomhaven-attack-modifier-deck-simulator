@@ -1,0 +1,89 @@
+the analyze of result/basic_class/curse/Spellweaver.txt
+
+Expected value of damage:	2.925050
+
+10th percentile of damage:	0
+25th percentile of damage:	1
+50th percentile of damage:	4
+75th percentile of damage:	4
+
+Damage 0:	24.091%
+Damage 1:	2.766%
+Damage 2:	8.294%
+Damage 3:	8.263%
+Damage 4:	38.688%
+Damage 5:	13.775%
+Damage 6:	4.122%
+
+air:	2.697%
+curse:	2.767%
+dark:	2.697%
+earth:	2.680%
+fire:	5.502%
+ice:	5.518%
+immobilize:	2.770%
+light:	2.688%
+stun:	2.764%
+wound:	2.764%
+
+Expected value of curse:	0.028
+
+
+the analyze of result/basic_class/curse/Spellweaver_advantage.txt
+
+Expected value of damage:	3.953318
+
+10th percentile of damage:	2
+25th percentile of damage:	4
+50th percentile of damage:	4
+75th percentile of damage:	5
+
+Damage 0:	5.021%
+Damage 1:	1.407%
+Damage 2:	5.171%
+Damage 3:	8.145%
+Damage 4:	49.355%
+Damage 5:	23.683%
+Damage 6:	7.219%
+
+air:	5.476%
+curse:	4.782%
+dark:	5.482%
+earth:	5.477%
+fire:	9.707%
+ice:	9.647%
+immobilize:	4.779%
+light:	5.483%
+stun:	3.915%
+wound:	4.737%
+
+Expected value of curse:	0.048
+
+
+the analyze of result/basic_class/curse/Spellweaver_disadvantage.txt
+
+Expected value of damage:	2.542865
+
+10th percentile of damage:	0
+25th percentile of damage:	0
+50th percentile of damage:	3
+75th percentile of damage:	4
+
+Damage 0:	26.330%
+Damage 1:	4.721%
+Damage 2:	13.282%
+Damage 3:	10.253%
+Damage 4:	36.640%
+Damage 5:	6.963%
+Damage 6:	1.811%
+
+curse:	2.252%
+fire:	2.722%
+ice:	2.757%
+immobilize:	2.222%
+stun:	2.360%
+wound:	2.208%
+
+Expected value of curse:	0.023
+
+
