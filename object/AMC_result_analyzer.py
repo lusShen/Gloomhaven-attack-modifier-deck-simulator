@@ -96,7 +96,7 @@ def AMC_result_analyzer(filename,outputfile,name):
 	attack_records.sort()
 	f.write("%.3f\t%.3f%%\t%d\t%d\t%d\t%d\t%d" %(
 			(total_damage/ attack_count),
-			(damage_count[0]/ attack_count),
+			(damage_count[0]*100/ attack_count),
 			attack_records[int(attack_count/10)],
 			attack_records[int(attack_count*3/10)],
 			attack_records[int(attack_count*5/10)],
@@ -107,7 +107,7 @@ def AMC_result_analyzer(filename,outputfile,name):
 	for key in ability_list:
 		f.write("\t")
 		if (key in ability_count):
-			f.write("%.3f%%" %(ability_count[key]/attack_count *100) )
+			f.write("%.3f%%" %(ability_count[key]*100/attack_count) )
 		if (key in stackable_ability_list):
 			f.write("\t")
 			if (key in ability_count):
