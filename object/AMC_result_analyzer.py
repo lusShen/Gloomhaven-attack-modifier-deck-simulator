@@ -1,12 +1,47 @@
+import os.path
+
 class mydict(dict):
 	def __missing__(self, key):
 		return 0
 
-def AMC_result_analyzer(filename,outputfile):
+def AMC_result_analyzer(filename,outputfile,name):
 	
 	ability_value_count = mydict()
 	ability_count = mydict()
 	damage_count = mydict()
+	
+	ability_list = [
+		"fire",
+		"ice",
+		"air",
+		"earth",
+		"light",
+		"dark",
+		"poison",
+		"wound",
+		"immobilize",
+		"disarm",
+		"stun",
+		"muddle",
+		"invisible",
+		"push",
+		"pull",
+		"piece",
+		"shield",
+		"heal",
+		"add target",
+		"curse"
+	]
+	
+	stackable_ability_list = [
+		"push",
+		"pull",
+		"piece",
+		"shield",
+		"heal",
+		"add target",
+		"curse"
+	]
 	
 	attack_count = 0
 	total_damage = 0
@@ -41,33 +76,44 @@ def AMC_result_analyzer(filename,outputfile):
 	
 	f.close()
 	
-	f = open(outputfile, "a")
-	f.write("the analyze of %s\n\n" %(filename))
-	f.write("Expected value of damage:\t%f\n\n" % (total_damage/ attack_count ) )
+	
+	if (not os.path.isfile(outputfile)):
+		f = open(outputfile, "a")
+		f.write("Class\tDMG Exp. value\t%% of 0 damage\t10th\t30th\t50th\t70th\t90th"  )
+		for key in ability_list:
+			f.write("\t%s" %(key) )
+			if (key in stackable_ability_list):
+				f.write("\tExp. value"  )
+		f.write("\n")
+	else:
+		f = open(outputfile, "a")
+	
+	
+
+			
+	
+	f.write("%s\t" %(name))
 	attack_records.sort()
-	f.write("10th percentile of damage:\t%d\n" % (attack_records[int(attack_count/10)]) )
-	f.write("25th percentile of damage:\t%d\n" % (attack_records[int(attack_count/4)]) )
-	f.write("50th percentile of damage:\t%d\n" % (attack_records[int(attack_count/2)]) )
-	f.write("75th percentile of damage:\t%d\n\n" % (attack_records[int(attack_count*3/4)]) )
+	f.write("%.3f\t%.3f%%\t%d\t%d\t%d\t%d\t%d" %(
+			(total_damage/ attack_count),
+			(damage_count[0]/ attack_count),
+			attack_records[int(attack_count/10)],
+			attack_records[int(attack_count*3/10)],
+			attack_records[int(attack_count*5/10)],
+			attack_records[int(attack_count*7/10)],
+			attack_records[int(attack_count*9/10)],
+		))
 	
-	for key in sorted(damage_count):
-		f.write("Damage %d:\t%.3f%%\n" % (key,(damage_count[key] / attack_count *100)) )
-		
+	for key in ability_list:
+		f.write("\t")
+		if (key in ability_count):
+			f.write("%.3f%%" %(ability_count[key]/attack_count *100) )
+		if (key in stackable_ability_list):
+			f.write("\t")
+			if (key in ability_count):
+				f.write("%.3f" %(ability_value_count[key]/attack_count) )
+			
 	f.write("\n")
-	
-	for key in sorted(ability_count):
-		if (not key):
-			continue
-		f.write("%s:\t%.3f%%\n" %(key,(ability_count[key] / attack_count *100)) )
-		
-	f.write("\n")
-	
-	for key in sorted(ability_value_count):
-		f.write("Expected value of %s:\t%.3f\n" %(key,(ability_value_count[key] / attack_count)) )
-	
-	
-	f.write("\n\n")
-	
 	f.close()
 
 
