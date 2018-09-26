@@ -26,7 +26,7 @@ def AMC_result_analyzer(filename,outputfile,name):
 		"invisible",
 		"push",
 		"pull",
-		"piece",
+		"pierce",
 		"shield",
 		"heal",
 		"add target",
@@ -36,7 +36,7 @@ def AMC_result_analyzer(filename,outputfile,name):
 	stackable_ability_list = [
 		"push",
 		"pull",
-		"piece",
+		"pierce",
 		"shield",
 		"heal",
 		"add target",
@@ -79,7 +79,7 @@ def AMC_result_analyzer(filename,outputfile,name):
 	
 	if (not os.path.isfile(outputfile)):
 		f = open(outputfile, "a")
-		f.write("Class\tDMG Exp. value\t%% of 0 damage\t10th\t30th\t50th\t70th\t90th"  )
+		f.write("Class\tDMG Exp. value\t% of 0 damage\t10th\t30th\t50th\t70th\t90th"  )
 		for key in ability_list:
 			f.write("\t%s" %(key) )
 			if (key in stackable_ability_list):
