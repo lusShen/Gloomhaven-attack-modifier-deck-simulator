@@ -1,4 +1,4 @@
-
+import os.path
 import sys
 import argparse
 import setting
@@ -40,30 +40,33 @@ setting.attack_per_curse = int(args.curse)
 setting.attack_per_bless = int(args.bless)
 
 p = args.output_path + test_class
-
-Deck_simulation(deck = character, adv =  0  , filename = p + '.txt')
-
-setting.init()
-setting.attack_per_curse = int(args.curse)
-setting.attack_per_bless = int(args.bless)
-
-Deck_simulation(deck = character, adv =  1  , filename = p + '_advantage.txt')
+if (not os.path.isfile( p + '.txt')):
+	Deck_simulation(deck = character, adv =  0  , filename = p + '.txt')
 
 setting.init()
 setting.attack_per_curse = int(args.curse)
 setting.attack_per_bless = int(args.bless)
+if (not os.path.isfile(p + '_advantage.txt')):
+	Deck_simulation(deck = character, adv =  1  , filename = p + '_advantage.txt')
 
-Deck_simulation(deck = character, adv = -1  , filename = p + '_disadvantage.txt')
+setting.init()
+setting.attack_per_curse = int(args.curse)
+setting.attack_per_bless = int(args.bless)
+if (not os.path.isfile(p + '_disadvantage.txt')):
+	Deck_simulation(deck = character, adv = -1  , filename = p + '_disadvantage.txt')
 
 AMC_result_analyzer(
 	p + '.txt',
-	p + '_analyze.txt'
+	args.output_path +'analyze.txt',
+	test_class
 )
 AMC_result_analyzer(
 	p + '_advantage.txt',
-	p + '_analyze.txt'
+	args.output_path +'analyze.txt',
+	test_class + '_adv'
 )
 AMC_result_analyzer(
 	p + '_disadvantage.txt',
-	p + '_analyze.txt'
+	args.output_path +'analyze.txt',
+	test_class + '_disadv'
 )
